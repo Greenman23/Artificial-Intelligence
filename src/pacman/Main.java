@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 /**
  * Main.fx created on 2008-12-20, 12:02:26 <br>
  * Main.java created October 2011
@@ -19,6 +18,7 @@ public class Main extends Application {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
+    System.out.println(MazeData.getData(2,2));
     Application.launch(Main.class, args);
   }
 
