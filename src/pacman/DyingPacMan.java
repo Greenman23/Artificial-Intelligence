@@ -18,112 +18,64 @@ import javafx.util.Duration;
  */
 public class DyingPacMan extends Arc {
 
-  private final Timeline timeline;
+    private final Timeline timeline;
 
-  public DyingPacMan(final Maze maze) {
+    public DyingPacMan(final Maze maze) {
 
-    timeline = new Timeline();
-    timeline.setCycleCount(1);
+        timeline = new Timeline();
+        timeline.setCycleCount(1);
 
-    KeyFrame kf1 =
-          new KeyFrame(Duration.millis(600),
-            new EventHandler<ActionEvent>() {
+        KeyFrame kf1 =
+                new KeyFrame(Duration.millis(600),
+                        event -> {
+                            maze.pacMan.setVisible(false);
 
-              @Override
-              public void handle(ActionEvent event) {
-                maze.pacMan.setVisible(false);
+                            for (Ghost g : maze.ghosts) {
+                                g.hide();
+                            }
 
-                for (Ghost g : maze.ghosts) {
-                  g.hide();
-                }
+                            setVisible(true);
+                        },
+                        new KeyValue(startAngleProperty(), 90),
+                        new KeyValue(lengthProperty(), 360)
+                );
 
-                setVisible(true);
-              }
-
-            },
-            new KeyValue(startAngleProperty(), 90),
-            new KeyValue(lengthProperty(), 360)
-          );
-
-    KeyFrame kf2 =
-          new KeyFrame(Duration.millis(1800),
-            new EventHandler<ActionEvent>() {
-
-              @Override
-              public void handle(ActionEvent event) {
-                setVisible(false);
-                maze.startNewLife();
-              }
-
-            },
-            new KeyValue(startAngleProperty(), 270),
-            new KeyValue(lengthProperty(), 0)
-          );
+        KeyFrame kf2 =
+                new KeyFrame(Duration.millis(1800),
+                        event -> {
+                            setVisible(false);
+                            maze.startNewLife();
+                        },
+                        new KeyValue(startAngleProperty(), 270),
+                        new KeyValue(lengthProperty(), 0)
+                );
 
 
+        timeline.getKeyFrames().addAll(kf1, kf2);
+    }
 
-    timeline.getKeyFrames().addAll(kf1, kf2);
-  }
+    public void pause() {
+        timeline.pause();
+    }
 
-//  var timeline = Timeline {
-//    repeatCount: 1
-//    keyFrames: [
-//
-//      KeyFrame {
-//        time: 600ms
-//        action: function() {
-//          // hide the pacMan character and ghosts before the animation
-//          maze.pacMan.visible = false;
-//
-//          for ( g in maze.ghosts ) {
-//            g.hide();
-//          }
-//
-//          visible = true;
-//        }
-//        values: [ startAngle => 90, length=>360 ];
-//      },
-//
-//      KeyFrame {
-//        time: 1800ms
-//        action: function() {
-//          visible = false;
-//          maze.startNewLife();
-//         }
-//        values: [ startAngle => 270 tween Interpolator.LINEAR,
-//                  length => 0 tween Interpolator.LINEAR ]
-//      },
-//    ]
-//  }
+    public void start() {
+        timeline.play();
+    }
 
-  public void pause() {
-    timeline.pause();
-  }
+    public boolean isRunning() {
+        return timeline.getStatus() == Animation.Status.RUNNING;
+    }
 
-  public void start() {
-    timeline.play();
-  }
+    public boolean isPaused() {
+        return timeline.getStatus() == Animation.Status.PAUSED;
+    }
 
-  public boolean isRunning() {
-//    return timeline.running;
-    return timeline.getStatus() == Animation.Status.RUNNING;
-  }
+    public void startAnimation(int x, int y) {
+        setStartAngle(90);
+        setCenterX(x);
+        setCenterY(y);
 
-  public boolean isPaused() {
-//    return timeline.paused;
-    return timeline.getStatus() == Animation.Status.PAUSED;
-  }
-
-  public void startAnimation(int x, int y) {
-
-//    startAngle = 90;
-    setStartAngle(90);
-//    centerX = x;
-    setCenterX(x);
-//    centerY = y;
-    setCenterY(y);
-
-    timeline.playFromStart();
-  }
+        timeline.playFromStart();
+    }
 
 }
