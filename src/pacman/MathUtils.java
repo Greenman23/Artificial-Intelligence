@@ -80,4 +80,24 @@ public class MathUtils {
         }
         return dotProduct;
     }
+
+    public static int maxIndex(double[] a) {
+        int max = 0;
+        for (int i = 1; i < a.length; i++) {
+            if(a[i] > a[max]) max = i;
+        }
+        return max;
+    }
+
+    public static int minIndex(double[] a) {
+        int min = 0;
+        for (int i = 1; i < a.length; i++) {
+            if(a[i] < a[min]) min = i;
+        }
+        return min;
+    }
+
+    public static double distance(double x1, double y1, double x2, double y2) {
+        return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+    }
 }

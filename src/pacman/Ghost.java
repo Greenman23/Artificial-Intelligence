@@ -42,7 +42,7 @@ public class Ghost extends MovingObject {
     // time for a ghost to stay hollow
     private static final int HOLLOW_MAX_TIME = 80;
 
-    private int hollowCounter;
+    public int hollowCounter;
 
     private final Image[] defaultImg;
 
@@ -55,15 +55,15 @@ public class Ghost extends MovingObject {
 
     // time to stay in the cage
     private final int trapTime;
-    public int trapCounter; // = 0;
+    public int trapCounter;
 
     // variables to determine if a ghost should chase pacman,
     // and the probability
     private static final double CHANGE_FACTOR = 0.75;
     private static final double CHASE_FACTOR = 0.5;
-    private int chaseCount; // = 0;
+    private int chaseCount;
 
-    public boolean isHollow; // = false;
+    public boolean isHollow;
 
 
     public Ghost(Image defaultImage1,
@@ -413,12 +413,9 @@ public class Ghost extends MovingObject {
                 }
             }
 
-//      if ( currentImage < ANIMATION_STEP - 1 )
             if (currentImage.get() < (ANIMATION_STEP - 1)) {
-//        currentImage++;
                 currentImage.set(currentImage.get() + 1);
             } else {
-//        currentImage=0;
                 currentImage.set(0);
                 if (state == TRAPPED) {
                     trapCounter++;
@@ -447,7 +444,6 @@ public class Ghost extends MovingObject {
                 images = defaultImg;
 
                 timeline.stop();
-//        timeline.keyFrames[0].time = 45ms;
                 timeline.setRate(1.0);
                 timeline.play();
             }

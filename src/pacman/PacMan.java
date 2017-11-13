@@ -303,6 +303,8 @@ public class PacMan extends MovingObject {
                 dot.setVisible(false);
                 dotEatenCount++;
 
+                maze.qLearning.eatFood();
+
                 if (score.get() >= 10000) {
                     maze.addLife();
                 }
@@ -338,20 +340,23 @@ public class PacMan extends MovingObject {
             return;
         }
         // HOOKS
-        int randomNum = (int) (Math.random() * 5);
-        switch (randomNum) {
-            case 0:
-                this.setKeyboardBuffer(MovingObject.MOVE_UP);
-                break;
-            case 1:
-                this.setKeyboardBuffer(MovingObject.MOVE_DOWN);
-                break;
-            case 2:
-                this.setKeyboardBuffer(MovingObject.MOVE_LEFT);
-                break;
-            case 3:
-                this.setKeyboardBuffer(MovingObject.MOVE_RIGHT);
-                break;
+        if(!Maze.PLAYER_CONTROL) {
+            this.setKeyboardBuffer(maze.qLearning.getMove());
+//            int randomNum = (int) (Math.random() * 5);
+//            switch (randomNum) {
+//                case 0:
+//                    this.setKeyboardBuffer(MovingObject.MOVE_UP);
+//                    break;
+//                case 1:
+//                    this.setKeyboardBuffer(MovingObject.MOVE_DOWN);
+//                    break;
+//                case 2:
+//                    this.setKeyboardBuffer(MovingObject.MOVE_LEFT);
+//                    break;
+//                case 3:
+//                    this.setKeyboardBuffer(MovingObject.MOVE_RIGHT);
+//                    break;
+//            }
         }
 
         // handle keyboard input only when Pac-Man is at a point on the grid
