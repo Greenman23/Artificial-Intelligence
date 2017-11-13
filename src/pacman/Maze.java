@@ -36,7 +36,7 @@ public class Maze extends Parent {
 
 
     // counter for ghosts eaten
-    private int ghostEatenCount;
+    public int ghostEatenCount;
 
     public BooleanProperty gamePaused;
 
@@ -68,7 +68,7 @@ public class Maze extends Parent {
     private boolean addLifeFlag;
 
     // current lives of the player
-    private final SimpleIntegerProperty livesCount;
+    public final SimpleIntegerProperty livesCount;
 
     // message to start a game
     public BooleanProperty waitForStart;
@@ -86,6 +86,7 @@ public class Maze extends Parent {
     private final Timeline flashingTimeline;
     private final Group group;
 
+    public final QLearning qLearning;
 
     public Maze() {
 
@@ -246,8 +247,10 @@ public class Maze extends Parent {
         final KeyFrame kf = new KeyFrame(Duration.seconds(0.5), event -> {
             gameResultText.setVisible(!gameResultText.isVisible());
             if (++flashingCount == 5) {
-                messageBox.setVisible(true);
-                waitForStart.set(true);
+                //messageBox.setVisible(true);
+                //waitForStart.set(true);
+                waitForStart.set(false);
+                startNewGame();
             }
         });
         flashingTimeline.getKeyFrames().add(kf);
@@ -495,6 +498,8 @@ public class Maze extends Parent {
             MazeData.printData();
             MazeData.printDots();
         }
+
+        qLearning = new QLearning(this, pacMan, ghosts, new double[QLearning.NUM_VARIABLES]);
     }
 
 
@@ -655,7 +660,7 @@ public class Maze extends Parent {
                         ghost.stop();
                     }
                     pacMan.stop();
-
+                    qLearning.loseLife();
                     dyingPacMan.startAnimation(pacMan.imageX.get(), pacMan.imageY.get());
                     break;
                 }
