@@ -109,7 +109,6 @@ public abstract class MovingObject extends Parent {
       public void handle(ActionEvent event) {
         moveOneStep();
       }
-
     });
     timeline.getKeyFrames().add(kf);
 

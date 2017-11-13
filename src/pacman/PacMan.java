@@ -329,7 +329,7 @@ public class PacMan extends MovingObject {
  /**
   * Handle keyboard input.
   */
-  private void handleKeyboardInput() {
+      private void handleKeyboardInput() {
 
     if (keyboardBuffer < 0) {
       return;
@@ -402,7 +402,22 @@ public class PacMan extends MovingObject {
 
       return;
     }
-
+    // HOOKS
+    int randomNum = (int)(Math.random() * 5);
+    switch(randomNum) {
+        case 0:
+        this.setKeyboardBuffer(MovingObject.MOVE_UP);
+        break;
+        case 1:
+            this.setKeyboardBuffer(MovingObject.MOVE_DOWN);
+            break;
+        case 2:
+            this.setKeyboardBuffer(MovingObject.MOVE_LEFT);
+            break;
+        case 3:
+            this.setKeyboardBuffer(MovingObject.MOVE_RIGHT);
+            break;
+    }
     // handle keyboard input only when Pac-Man is at a point on the grid
     if (currentImage.get() == 0) {
 //    if ( currentImage == 0 ) {
