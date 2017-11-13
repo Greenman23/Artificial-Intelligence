@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="be586d57-f1e5-4420-9b58-1c14a0298714" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Dot$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/pacman/testorflow.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Dot.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Dot.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Main.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$1.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$2.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$3.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/Maze.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/PacMan$1.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/PacMan$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/PacMan.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/PacMan.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/PacManFileManager.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/PacManFileManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Pacman/pacman/PacManManager.class" afterPath="$PROJECT_DIR$/out/production/Pacman/pacman/PacManManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/Dot.java" afterPath="$PROJECT_DIR$/src/pacman/Dot.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/DyingPacMan.java" afterPath="$PROJECT_DIR$/src/pacman/DyingPacMan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/Ghost.java" afterPath="$PROJECT_DIR$/src/pacman/Ghost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/Main.java" afterPath="$PROJECT_DIR$/src/pacman/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/Maze.java" afterPath="$PROJECT_DIR$/src/pacman/Maze.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/MazeData.java" afterPath="$PROJECT_DIR$/src/pacman/MazeData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/MoveDecision.java" afterPath="$PROJECT_DIR$/src/pacman/MoveDecision.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/MovingObject.java" afterPath="$PROJECT_DIR$/src/pacman/MovingObject.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/PacMan.java" afterPath="$PROJECT_DIR$/src/pacman/PacMan.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/ScoreText.java" afterPath="$PROJECT_DIR$/src/pacman/ScoreText.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/WallBlackLine.java" afterPath="$PROJECT_DIR$/src/pacman/WallBlackLine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/WallBlackRectangle.java" afterPath="$PROJECT_DIR$/src/pacman/WallBlackRectangle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/WallRectangle.java" afterPath="$PROJECT_DIR$/src/pacman/WallRectangle.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,11 +29,9 @@
       <file leaf-file-name="Maze.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pacman/Maze.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="535" column="17" lean-forward="true" selection-start-line="535" selection-start-column="17" selection-end-line="535" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-204">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,7 +72,6 @@
         <option value="$PROJECT_DIR$/src/pacman/DyingPacMan.java" />
         <option value="$PROJECT_DIR$/src/pacman/Ghost.java" />
         <option value="$PROJECT_DIR$/src/pacman/Dot.java" />
-        <option value="$PROJECT_DIR$/src/pacman/Maze.java" />
         <option value="$PROJECT_DIR$/src/pacman/Main.java" />
         <option value="$PROJECT_DIR$/src/pacman/MazeData.java" />
         <option value="$PROJECT_DIR$/src/pacman/MoveDecision.java" />
@@ -109,6 +80,7 @@
         <option value="$PROJECT_DIR$/src/pacman/WallBlackLine.java" />
         <option value="$PROJECT_DIR$/src/pacman/WallBlackRectangle.java" />
         <option value="$PROJECT_DIR$/src/pacman/WallRectangle.java" />
+        <option value="$PROJECT_DIR$/src/pacman/Maze.java" />
       </list>
     </option>
   </component>
@@ -465,6 +437,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="be586d57-f1e5-4420-9b58-1c14a0298714" name="Default" comment="" />
@@ -488,13 +463,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20790629" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20790629" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -537,9 +512,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="16269">
           <caret line="979" column="0" lean-forward="false" selection-start-line="979" selection-start-column="0" selection-end-line="979" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -633,14 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacman/PacManManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -752,13 +717,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacman/PacManManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="42" column="6" lean-forward="false" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacman/Maze.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="535" column="17" lean-forward="true" selection-start-line="535" selection-start-column="17" selection-end-line="535" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="-204">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

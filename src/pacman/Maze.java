@@ -7,8 +7,6 @@ import javafx.beans.binding.StringBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.image.Image;
@@ -245,17 +243,12 @@ public class Maze extends Parent {
 
         flashingTimeline = new Timeline();
         flashingTimeline.setCycleCount(5);
-        final KeyFrame kf = new KeyFrame(Duration.seconds(0.5), new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent event) {
-                gameResultText.setVisible(!gameResultText.isVisible());
-                if (++flashingCount == 5) {
-                    messageBox.setVisible(true);
-                    waitForStart.set(true);
-                }
+        final KeyFrame kf = new KeyFrame(Duration.seconds(0.5), event -> {
+            gameResultText.setVisible(!gameResultText.isVisible());
+            if (++flashingCount == 5) {
+                messageBox.setVisible(true);
+                waitForStart.set(true);
             }
-
         });
         flashingTimeline.getKeyFrames().add(kf);
 
@@ -417,11 +410,10 @@ public class Maze extends Parent {
         textLevel.setFill(Color.YELLOW);
         textLevel.setCache(true);
         group.getChildren().add(textLevel);
-        group.setFocusTraversable(true); // patweb
+        group.setFocusTraversable(true);
         group.setOnKeyPressed(ke -> onKeyPressed(ke));
 
 
-        // postinit
         putDotHorizontally(2, 12, 1);
         putDotHorizontally(17, 27, 1);
 
@@ -496,8 +488,6 @@ public class Maze extends Parent {
 
         // insert messageBox into group.content;
         group.getChildren().add(messageBox);
-
-        // end postinit
 
         getChildren().add(group);
 
@@ -751,7 +741,6 @@ public class Maze extends Parent {
         }
         gamePaused.set(true);
     }
-
 
     // reset status and start a new game
     public void startNewGame() {
