@@ -7,9 +7,10 @@ on the neural network have weights.
  */
 
 public class Neuron {
-    private Neuron parent;
-    private Neuron child0;
-    private Neuron child1;
+    protected Neuron parent;
+    protected Neuron child0;
+    protected Neuron child1;
+    protected double weight;
 
     Neuron(Neuron parent)
     {
@@ -30,19 +31,21 @@ public class Neuron {
         return child1;
     }
 
-    Neuron getParent(){
-        return parent;
-    }
-}
 
-
-class EndNeuron extends Neuron
-{
-    private double weight ;
-    EndNeuron(Neuron parent, double weight)
+    boolean checkFinalChild0()
     {
-    super(parent);
-    this.weight = weight;
+        if(this.child0 == null)
+            return false;
+        else
+            return true;
+    }
+
+    boolean checkFinalChild1()
+    {
+        if(this.child1 == null)
+            return false;
+        else
+            return true;
     }
 
     double getWeight()
@@ -54,16 +57,4 @@ class EndNeuron extends Neuron
     {
      this.weight = weight;
     }
-
-
-    Neuron getChild0()
-    {
-        return null;
-    }
-
-    Neuron getChild1()
-    {
-        return null;
-    }
-
 }
