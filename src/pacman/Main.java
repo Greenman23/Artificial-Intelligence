@@ -13,8 +13,6 @@ import javafx.stage.Stage;
  * @see <a href="http://www.javafxgame.com">http://www.javafxgame.com</a>
  */
 public class Main extends Application {
-
-<<<<<<< HEAD
   /**
    * @param args the command line arguments
    */
@@ -22,15 +20,6 @@ public class Main extends Application {
     System.out.println(MazeData.getData(2,2));
     Application.launch(Main.class, args);
   }
-=======
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Application.launch(Main.class, args);
-    }
->>>>>>> origin/master
-
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Pac-Man Neural Network");
