@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 /**
  * Text object for showing score for eating a ghost; disappears after 2 seconds.
- *
+ * <p>
  * ScoreText.fx created on 2009-2-6, 17:52:42 <br>
  * ScoreText.java created October 2011
  *
@@ -20,61 +20,39 @@ import javafx.util.Duration;
  * @author Patrick Webster
  */
 public class ScoreText extends Parent {
-//public class ScoreText extends Text {
+    private static final Font SCORE_FONT = new Font(11);
+    private static final Color SCORE_FILL = Color.YELLOW;
+    private static final int DISPLAY_TIME = 2;
+    private final Text text;
 
-//  override var font = Font { size: 11 };
-  private static final Font SCORE_FONT = new Font(11);
-//  override var fill = Color.YELLOW;
-  private static final Color SCORE_FILL = Color.YELLOW;
-  private static final int DISPLAY_TIME = 2;
-  private final Text text;
+    private Timeline timeline;
 
-  private Timeline timeline;
+    public ScoreText(String s, boolean isVisible) {
+        text = new Text(s);
+        text.setFont(SCORE_FONT);
+        text.setFill(SCORE_FILL);
+        createTimeline();
+        getChildren().add(text);
+        setVisible(isVisible);
+    }
 
-  public ScoreText(String s, boolean isVisible) { //patweb
-    text = new Text(s);
-    text.setFont(SCORE_FONT);
-    text.setFill(SCORE_FILL);
-    createTimeline();
-    getChildren().add(text);
-    setVisible(isVisible);
-  }
+    private void createTimeline() {
+        timeline = new Timeline();
+        timeline.setCycleCount(1);
+        KeyFrame kf = new KeyFrame(Duration.seconds(DISPLAY_TIME), event -> setVisible(false));
+        timeline.getKeyFrames().add(kf);
+    }
 
-  private void createTimeline() {
-//  var timeline= Timeline {
-//    repeatCount: 1
-//    keyFrames: [
-//      KeyFrame {
-//        time: 2s
-//        action: function() {
-//          visible = false;
-//        }
-//      }
-//    ]
-//  };
-    timeline = new Timeline();
-    timeline.setCycleCount(1);
-    KeyFrame kf = new KeyFrame(Duration.seconds(DISPLAY_TIME), new EventHandler<ActionEvent>() {
+    public void showText() {
+        setVisible(true);
+        timeline.playFromStart();
+    }
 
-      @Override
-      public void handle(ActionEvent event) {
-        setVisible(false);
-      }
-    });
-    timeline.getKeyFrames().add(kf);
-  }
+    public void setX(int x) {
+        text.setX(x);
+    }
 
-  public void showText() {
-    setVisible(true);
-    timeline.playFromStart();
-  }
-
-  public void setX(int x) {
-    text.setX(x);
-  }
-
-  public void setY(int y) {
-    text.setY(y);
-  }
-
+    public void setY(int y) {
+        text.setY(y);
+    }
 }
