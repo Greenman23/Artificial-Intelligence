@@ -7,17 +7,17 @@ public class NeuralNetwork {
 private Neuron base;
 private int depth;
 private int historySize;
-ArrayList<EndNeuron> history;
+ArrayList<Neuron> history;
 
-NeuralNetwork(int depth, int historySize)
+ NeuralNetwork(int depth, int historySize)
 {
     base = new Neuron(null);
     this.depth = depth;
     this.historySize = historySize;
-    this.history = new ArrayList<EndNeuron>();
+    this.history = new ArrayList<Neuron>();
 }
 
-Neuron getData(int[] arr)
+ Neuron getData(int[] arr)
 {
     Neuron current = base;
     for(int i = 0; i < depth; i++)
@@ -27,14 +27,27 @@ Neuron getData(int[] arr)
         else if (arr[i] == 1)
             current = base.getChild1();
         else
-            throw new InvalidParameterException("Input can only contain ones and 0s");
+            throw new InvalidParameterException("Input can only contain ones and zeros");
     }
-    return current; 
+    return current;
 }
 
-void chooseState(EndNeuron endNeuron)
+void chooseState(Neuron neuron)
 {
-    history.add(endNeuron);
+    history.add(neuron);
 }
 
+
+// For Jade, find a way to store and retrieve the neural network from a notepad file as efficiently as possible.
+// It would be best if only the bottom elements were stored in the notepad file, but I will leave that up to you. 
+ void storeCurrentTree()
+{
+
 }
+
+
+NeuralNetwork getTree(String fileName)
+{
+
+}
+
