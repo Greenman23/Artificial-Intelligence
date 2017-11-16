@@ -88,6 +88,45 @@ public class QLearningRecurrent {
                 return getState(pacman.x,pacman.y, ghostPos);
             }
 
+            int currentGhostX =0;
+            int currentGhostY=0;
+            int[][] ghostPos = {
+                    {ghosts[0].x, ghosts[0].y},
+                    {ghosts[1].x, ghosts[1].y},
+                    {ghosts[2].x, ghosts[2].y},
+                    {ghosts[3].x, ghosts[3].y}
+            };
+            for (int i = 0; i < ghosts.length;i++){
+
+                if(ghosts[i].xDirection !=0)
+                {
+                    currentGhostX = ghosts[i].xDirection + ghosts[i].x;
+                    ghostPos[i][0] = currentGhostX;
+                }
+                if(ghosts[i].yDirection != 0)
+                {
+                    currentGhostY = ghosts[i].yDirection + ghosts[i].y;
+                    ghostPos[i][0] = currentGhostY;
+                }
+
+            }
+
+            if(d == Direction.RIGHT){
+                return getState(pacman.x+1, pacman.y, ghostPos);
+            }
+
+            else if(d == Direction.LEFT){
+                return getState(pacman.x-1, pacman.y, ghostPos);
+            }
+
+            else if(d == Direction.UP){
+                return getState(pacman.x, pacman.y-1, ghostPos);
+            }
+
+            else if(d == Direction.DOWN){
+                return getState(pacman.x, pacman.y+1, ghostPos);
+            }
+
             // For Julian, add cases for future states. Use the direction and speed of the ghosts to estimate where
             // they will be if they take an action.
             // Also, check where pacman will be depending on his action. Additionally, make sure not to check
