@@ -73,7 +73,7 @@ public class MathUtils {
         return result;
     }
 
-    public static double dotProduct(double[] a, double[] b){
+    public static double dotProduct(double[] a, double[] b) {
         double dotProduct = 0;
         for (int i = 0; i < a.length; i++) {
             dotProduct += a[i] * b[i];
@@ -84,7 +84,7 @@ public class MathUtils {
     public static int maxIndex(double[] a) {
         int max = 0;
         for (int i = 1; i < a.length; i++) {
-            if(a[i] > a[max]) max = i;
+            if (a[i] > a[max]) max = i;
         }
         return max;
     }
@@ -92,7 +92,7 @@ public class MathUtils {
     public static int minIndex(double[] a) {
         int min = 0;
         for (int i = 1; i < a.length; i++) {
-            if(a[i] < a[min]) min = i;
+            if (a[i] < a[min]) min = i;
         }
         return min;
     }
@@ -101,7 +101,33 @@ public class MathUtils {
         return Math.abs(x1 - x2) + Math.abs(y1 - y2);
     }
 
-    public static double getRealDistance(double x1, double y1, double x2, double y2){
-        return Math.sqrt(Math.pow(x1 - x2,2) + Math.pow(y1-y2,2));
+    public static double getRealDistance(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+    }
+
+    public static int[] convertIntToBinary(int[] arr, int x, int base) {
+        arr = new int[base];
+        for (int i = 0; i < arr.length; i++) {
+            if (base < x) {
+                x -= -base;
+                arr[i] = 1;
+            } else
+                arr[i] = 0;
+            base /= 2;
+        }
+
+        return arr;
+    }
+
+
+    public static int convertToDecimal(int[] arr) {
+        int base = 1;
+        int value = 0;
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] == 1)
+                value += base;
+            base *= 2;
+        }
+        return value;
     }
 }

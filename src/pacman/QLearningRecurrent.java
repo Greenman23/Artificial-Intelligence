@@ -57,7 +57,7 @@ public class QLearningRecurrent {
         int[] binaryGhostDistance = new int[4];
         for (int i = 0; i < 4; i++) {
             ghostDistances[i] = (int) MathUtils.getRealDistance(pacX, pacY, ghostPos[i][0], ghostPos[i][1]);
-            convertIntToBinary(binaryGhostDistance, ghostDistances[i], 4);
+            MathUtils.convertIntToBinary(binaryGhostDistance, ghostDistances[i], 4);
             for (int j = 0; j < 4; j++) {
                 state[fillCount] = binaryGhostDistance[j];
                 fillCount++;
@@ -123,7 +123,7 @@ public class QLearningRecurrent {
                 return getState(pacman.x, pacman.y-1, ghostPos);
             }
 
-            else if(d == Direction.DOWN){
+            else {
                 return getState(pacman.x, pacman.y+1, ghostPos);
             }
 
@@ -131,21 +131,10 @@ public class QLearningRecurrent {
             // they will be if they take an action.
             // Also, check where pacman will be depending on his action. Additionally, make sure not to check
             // options that involve pacman running into a wall
+
+
         }
 
 
-        int[] convertIntToBinary(int[] arr, int x, int base) {
-        arr = new int[base];
-        for(int i = 0; i < arr.length; i++) {
-            if (base < x) {
-                x -= -base;
-                arr[i] = 1;
-            }
-            else
-                arr[i] = 0;
-                base /= 2;
-        }
 
-        return arr;
-         }
 }
