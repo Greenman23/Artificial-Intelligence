@@ -130,4 +130,14 @@ public class MathUtils {
         }
         return value;
     }
+
+
+    public static boolean epsilon(double value1, double value2, double compareFactor) {
+        double max = Math.max(value1, value2);
+        double min = Math.min(value1, value2);
+        if (max - compareFactor <= min)
+            return true;
+        else
+            return false;
+    }
 }
