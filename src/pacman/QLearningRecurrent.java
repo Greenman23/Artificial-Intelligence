@@ -19,25 +19,24 @@ public class QLearningRecurrent {
     public static final int HISTORY_SIZE = 20;
     public static final int NUM_VARIABLES = 16;
     private static final double EXPLORATION_PROBABILITY = 0.5;
-    private static final double LEARNING_RATE = 0.3;
+    private static final double LEARNING_RATE = 0.03;
     private static final double DISCOUNT_FACTOR = 0.8;
     private static final double FOOD_REWARD = 1;
     private static final double NO_FOOD_REWARD = -1;
     private static final double LOSE_LIFE = -10;
     NeuralNetwork neuralNetwork;
-    Neuron current;
-    Neuron[] nextPossible;
     private Maze maze;
     private PacMan pacman;
     private Ghost[] ghosts;
     private Random r = new Random();
-
+    private double explorationProbability;
 
      QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts, double[] initialWeights) {
         this.maze = maze;
         this.pacman = pacman;
         this.ghosts = ghosts;
         this.neuralNetwork = new NeuralNetwork(DEPTH, HISTORY_SIZE);
+        this.explorationProbability = EXPLORATION_PROBABILITY;
     }
 
     boolean makeDecision(){
@@ -47,7 +46,7 @@ public class QLearningRecurrent {
          double possibleStateValues[] = new double[4];
 
          currentState = this.estimateNextState(Direction.NONE);
-         modifyStates(currentState);
+         addState(currentState);
 
          // Look at current State
 
@@ -63,10 +62,14 @@ public class QLearningRecurrent {
     }
 
 
-    void modifyStates(int[] state){
+    void addState(int[] state){
     // Modify this state based on what happened
 
     // Then modify the history
+    updateStateValues();
+    }
+
+    void updateStateValues(){
 
     }
 
@@ -133,7 +136,6 @@ public class QLearningRecurrent {
                     currentGhostY = ghosts[i].yDirection + ghosts[i].y;
                     ghostPos[i][0] = currentGhostY;
                 }
-
             }
 
             if(d == Direction.RIGHT){
@@ -160,7 +162,7 @@ public class QLearningRecurrent {
         boolean setStateValue(int[] arr, double newValue){
             int integer  = MathUtils.convertToDecimal(arr);
             if(integer >= Math.pow(2,DEPTH))
-                return false; 
+                return false;
             neuralNetwork.tree[integer] = newValue;
             return true;
         }
