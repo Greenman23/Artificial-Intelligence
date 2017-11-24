@@ -154,10 +154,10 @@ public class QLearningRecurrent {
         }
 
         double getStateValue(int[] arr){
-
+            return MathUtils.convertToDecimal(arr);
         }
 
         boolean setStateValue(int[] arr, double newValue){
-
+            int integer  = MathUtils.convertToDecimal(arr);
         }
 }
