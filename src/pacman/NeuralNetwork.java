@@ -22,24 +22,11 @@ public class NeuralNetwork {
     }
 
     double getData(int[] arr) {
-//        Neuron current = base;
-//        for (int i = 0; i < depth; i++) {
-//            if (arr[i] == 0)
-//                current = base.getChild0();
-//            else if (arr[i] == 1)
-//                current = base.getChild1();
-//            else
-//                throw new InvalidParameterException("Input can only contain ones and zeros");
-//        }
-//        return current;
-
         double value = tree[MathUtils.convertToDecimal(arr)];
         return value;
-
-
     }
 
-    void addState(int[] a) {
+    void addStateToHistory(int[] a) {
         history.add(a);
     }
 
@@ -61,11 +48,14 @@ public class NeuralNetwork {
         } catch(IOException e){
             e.printStackTrace();
         }
-
     }
 
 
-    NeuralNetwork getTree(String fileName) {
+    void setTree(double[] tree){
+        this.tree = tree;
+    }
+
+    double[] getTree(String fileName) {
         File file = new File(fileName);
         try (Scanner scan = new Scanner(file)){
             int count = 0;
@@ -87,11 +77,7 @@ public class NeuralNetwork {
             System.out.println("File " + fileName + "not found");
         }
 
+        return tree;
         //NeuralNetwork x = new NeuralNetwork();
-        return new NeuralNetwork(2, 2);
-
     }
-
-
-
 }

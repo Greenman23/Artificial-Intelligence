@@ -1,10 +1,8 @@
 package pacman;
 
 import org.omg.CORBA.INTERNAL;
-
 import java.util.HashMap;
 import java.util.Random;
-
 
 public class QLearningRecurrent {
 
@@ -32,7 +30,6 @@ public class QLearningRecurrent {
     private Maze maze;
     private PacMan pacman;
     private Ghost[] ghosts;
-
     private Random r = new Random();
 
 
@@ -43,6 +40,35 @@ public class QLearningRecurrent {
         this.neuralNetwork = new NeuralNetwork(DEPTH, HISTORY_SIZE);
     }
 
+    boolean makeDecision(){
+         boolean possibleStates[] = new boolean[4];
+         int currentState[] = new int[DEPTH];
+         double currentStateValue;
+         double possibleStateValues[] = new double[4];
+
+         currentState = this.estimateNextState(Direction.NONE);
+         modifyStates(currentState);
+
+         // Look at current State
+
+        // Check position
+
+        // Discover which directions are valid
+
+        // Get Values for Next States
+
+        // Pick the next one or choose a random option
+
+         return true;
+    }
+
+
+    void modifyStates(int[] state){
+    // Modify this state based on what happened
+
+    // Then modify the history
+
+    }
 
     int[] getState(int pacX, int pacY, int[][] ghostPos) {
         int fillCount = 0;
@@ -76,7 +102,6 @@ public class QLearningRecurrent {
     // Depending on the Direction give, this will estimate the future position of pacman, the 4 ghosts
         int[] estimateNextState(Direction d )
         {
-            int[] state;
             if(d == Direction.NONE)
             {
                 int[][] ghostPos = {
@@ -126,15 +151,13 @@ public class QLearningRecurrent {
             else {
                 return getState(pacman.x, pacman.y+1, ghostPos);
             }
+        }
 
-            // For Julian, add cases for future states. Use the direction and speed of the ghosts to estimate where
-            // they will be if they take an action.
-            // Also, check where pacman will be depending on his action. Additionally, make sure not to check
-            // options that involve pacman running into a wall
-
+        double getStateValue(int[] arr){
 
         }
 
+        boolean setStateValue(int[] arr, double newValue){
 
-
+        }
 }
