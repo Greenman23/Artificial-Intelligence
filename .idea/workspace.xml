@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be586d57-f1e5-4420-9b58-1c14a0298714" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pacman/QLearningRecurrent.java" afterPath="$PROJECT_DIR$/src/pacman/QLearningRecurrent.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,20 +55,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QLearningRecurrent.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="QLearningRecurrent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pacman/QLearningRecurrent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="156" column="12" lean-forward="false" selection-start-line="156" selection-start-column="12" selection-end-line="156" selection-end-column="12" />
+            <state relative-caret-position="776">
+              <caret line="162" column="30" lean-forward="false" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1511560046105" expanded="true" signature="5012:5022" ph="{}" />
+                <element signature="e#4829#4830#0" expanded="true" />
+                <element signature="e#4911#4912#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="816">
@@ -129,8 +129,8 @@
         <option value="$PROJECT_DIR$/src/pacman/QLearning.java" />
         <option value="$PROJECT_DIR$/src/pacman/MathUtils.java" />
         <option value="$PROJECT_DIR$/src/pacman/NeuralNetwork.java" />
-        <option value="$PROJECT_DIR$/src/pacman/QLearningRecurrent.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/pacman/QLearningRecurrent.java" />
       </list>
     </option>
   </component>
@@ -656,7 +656,8 @@
           <caret line="68" column="30" lean-forward="false" selection-start-line="68" selection-start-column="30" selection-end-line="68" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511560046105" expanded="true" signature="5012:5022" ph="{}" />
+            <element signature="e#4829#4830#0" expanded="true" />
+            <element signature="e#4911#4912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,7 +708,8 @@
           <caret line="59" column="22" lean-forward="false" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1511560046105" expanded="true" signature="5012:5022" ph="{}" />
+            <element signature="e#4829#4830#0" expanded="true" />
+            <element signature="e#4911#4912#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -892,14 +894,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacman/MathUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="122" column="44" lean-forward="false" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pacman/Neuron.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -922,22 +916,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pacman/QLearningRecurrent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="156" column="12" lean-forward="false" selection-start-line="156" selection-start-column="12" selection-end-line="156" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1511560046105" expanded="true" signature="5012:5022" ph="{}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="816">
           <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacman/MathUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="122" column="44" lean-forward="false" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pacman/QLearningRecurrent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="776">
+          <caret line="162" column="30" lean-forward="false" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4829#4830#0" expanded="true" />
+            <element signature="e#4911#4912#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

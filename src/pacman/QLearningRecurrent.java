@@ -154,10 +154,14 @@ public class QLearningRecurrent {
         }
 
         double getStateValue(int[] arr){
-            return MathUtils.convertToDecimal(arr);
+            return neuralNetwork.tree[MathUtils.convertToDecimal(arr)];
         }
 
         boolean setStateValue(int[] arr, double newValue){
             int integer  = MathUtils.convertToDecimal(arr);
+            if(integer >= Math.pow(2,DEPTH))
+                return false; 
+            neuralNetwork.tree[integer] = newValue;
+            return true;
         }
 }
