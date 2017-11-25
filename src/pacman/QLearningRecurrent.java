@@ -103,7 +103,6 @@ public class QLearningRecurrent {
         else
             return maxDirection;
 
-
     }
 
 
@@ -210,6 +209,11 @@ public class QLearningRecurrent {
                 return false;
             neuralNetwork.tree[integer] = newValue;
             return true;
+        }
+
+
+        double getCurrentReward(){
+            return this.reward;
         }
 
         void setCurrentReward(double reward){
