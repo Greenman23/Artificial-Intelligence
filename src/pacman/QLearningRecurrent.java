@@ -78,19 +78,10 @@ public class QLearningRecurrent {
             possibleStateValues[MOVE_LEFT] = getStateValue(estimateNextState(Direction.LEFT));
 
         currentStateValue = getStateValue(estimateNextState(Direction.NONE));
-
-         //Check below
-         // Look at current State
-
-        // Check position
-
-        // Discover which directions are valid
-
-        // Get Values for Next States
-
-        // Pick the next one or choose a random option
-
-         return 1;
+        int max = 0;
+        int secondMax = 0;
+         //for(int i = 0; i < 3; i++)
+           return 1;
     }
 
 
