@@ -39,6 +39,7 @@ public class QLearningRecurrent {
     private double reward;
     private double rewardForCurrentState;
     private int uniqueStates;
+    int tries;
 
      QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts) {
         this.maze = maze;
@@ -50,6 +51,7 @@ public class QLearningRecurrent {
         this.reward = -.02;
         rewardForCurrentState = 0;
         uniqueStates = 0;
+        tries = 0;
 
 
     }
@@ -59,7 +61,7 @@ public class QLearningRecurrent {
         boolean possibleStates[] = new boolean[4];
         int currentState[] = new int[DEPTH];
         double currentStateValue;
-        neuralNetwork.storeCurrentTree();
+
 
         int a = estimateNextBestState();
 //        switch (a){
@@ -81,7 +83,6 @@ public class QLearningRecurrent {
         }
         return a;
     }
-
 
     void addState(int[] state){
     // Modify this state based on what happened
@@ -107,7 +108,8 @@ public class QLearningRecurrent {
         double currentStateValue;
         double possibleNextStateValue;
         currentStateValue = getStateValue(this.neuralNetwork.history.getLast());
-        if(currentStateValue == 0.000) uniqueStates++;
+        if(currentStateValue == 0.000)
+            uniqueStates++;
         possibleNextStateValue = getStateValue(estimateNextState(estimateNextBestState()));
 
         currentStateValue += LEARNING_RATE * (getCurrentReward() + (DISCOUNT_FACTOR * possibleNextStateValue) - currentStateValue);
@@ -269,9 +271,21 @@ public class QLearningRecurrent {
         }
 
         void loseLife(){
-            setCurrentReward(-1);
-            System.out.println("Unique States visited " + uniqueStates);
+            setCurrentReward(-10);
+            System.out.println("Unique States visited " + uniqueStates + "\n" + "Tries " + tries);
+            tries++;
             makeDecision();
+            neuralNetwork.storeCurrentTree();
+            for(int i = 0; i < 10; i++){
+                if(i < neuralNetwork.history.size()){
+                    for (int s: neuralNetwork.history.get(neuralNetwork.history.size() - 1 -i)) {
+                        System.out.print(s + " ");
+                    }
+                    System.out.println("");
+                }
+            }
+            this.neuralNetwork.history.clear();
+
         }
 
         void eatGhost(){
@@ -283,7 +297,7 @@ public class QLearningRecurrent {
         }
 
         void eatNothing(){
-            setCurrentReward(-.01);
+            setCurrentReward(0);
         }
 
 
