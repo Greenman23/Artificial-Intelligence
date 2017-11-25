@@ -86,8 +86,8 @@ public class Maze extends Parent {
     private final Timeline flashingTimeline;
     private final Group group;
 
-    public final QLearning qLearning;
-
+   public final QLearning qLearning;
+   // public final QLearningRecurrent qLearning;
     public Maze() {
 
         setFocused(true);
@@ -499,7 +499,7 @@ public class Maze extends Parent {
             MazeData.printDots();
         }
 
-        qLearning = new QLearning(this, pacMan, ghosts, new double[QLearning.NUM_VARIABLES]);
+        qLearning = new QLearning(this,pacMan, ghosts,new double[QLearning.NUM_VARIABLES]);
     }
 
 

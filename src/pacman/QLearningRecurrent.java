@@ -31,7 +31,7 @@ public class QLearningRecurrent {
     private Random r = new Random();
     private double explorationProbability;
 
-     QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts, double[] initialWeights) {
+     QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts) {
         this.maze = maze;
         this.pacman = pacman;
         this.ghosts = ghosts;
@@ -49,7 +49,7 @@ public class QLearningRecurrent {
          addState(currentState);
 
          // Look at current State
-
+        pacman.state
         // Check position
 
         // Discover which directions are valid
