@@ -15,6 +15,12 @@ public class QLearningRecurrent {
         RIGHT
     }
 
+
+    protected static final int MOVE_LEFT = 0;
+    protected static final int MOVE_UP = 1;
+    protected static final int MOVE_RIGHT = 2;
+    protected static final int MOVE_DOWN = 3;
+
     public static final int DEPTH = 17;
     public static final int HISTORY_SIZE = 20;
     public static final int NUM_VARIABLES = 16;
@@ -30,6 +36,7 @@ public class QLearningRecurrent {
     private Ghost[] ghosts;
     private Random r = new Random();
     private double explorationProbability;
+    private double reward;
 
      QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts) {
         this.maze = maze;
@@ -37,9 +44,10 @@ public class QLearningRecurrent {
         this.ghosts = ghosts;
         this.neuralNetwork = new NeuralNetwork(DEPTH, HISTORY_SIZE);
         this.explorationProbability = EXPLORATION_PROBABILITY;
+        this.reward = -.02;
     }
 
-    boolean makeDecision(){
+    int makeDecision(){
          boolean possibleStates[] = new boolean[4];
          int currentState[] = new int[DEPTH];
          double currentStateValue;
@@ -49,7 +57,7 @@ public class QLearningRecurrent {
          addState(currentState);
 
          // Look at current State
-        pacman.state
+
         // Check position
 
         // Discover which directions are valid
@@ -58,7 +66,7 @@ public class QLearningRecurrent {
 
         // Pick the next one or choose a random option
 
-         return true;
+         return 1;
     }
 
 
@@ -166,4 +174,22 @@ public class QLearningRecurrent {
             neuralNetwork.tree[integer] = newValue;
             return true;
         }
+
+        void setCurrentReward(double reward){
+            this.reward = reward;
+        }
+
+        void loseLife(){
+            setCurrentReward(-1);
+        }
+
+        void eatGhost(){
+            setCurrentReward(.5);
+        }
+
+        void eatFood(){
+            setCurrentReward(.1);
+        }
+
+
 }

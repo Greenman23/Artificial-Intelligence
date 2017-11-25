@@ -341,7 +341,7 @@ public class PacMan extends MovingObject {
         }
         // HOOKS
         if(!Maze.PLAYER_CONTROL) {
-            this.setKeyboardBuffer(maze.qLearning.getMove());
+            this.setKeyboardBuffer(maze.qLearning.makeDecision());
 //            int randomNum = (int) (Math.random() * 5);
 //            switch (randomNum) {
 //                case 0:
