@@ -6,14 +6,14 @@ import java.util.Random;
 
 public class QLearningRecurrent {
 
-    enum Direction
-    {
-        NONE,
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
-    }
+//    enum Direction
+//    {
+//        NONE,
+//        UP,
+//        DOWN,
+//        LEFT,
+//        RIGHT
+//    }
 
 
     protected static final int MOVE_LEFT = 0;
@@ -24,9 +24,9 @@ public class QLearningRecurrent {
     public static final int DEPTH = 17;
     public static final int HISTORY_SIZE = 20;
     public static final int NUM_VARIABLES = 16;
-    private static final double EXPLORATION_PROBABILITY = 0.02;
+    private static final double EXPLORATION_PROBABILITY = 0.0002;
     private static final double LEARNING_RATE = 0.03;
-    private static final double DISCOUNT_FACTOR = 0.8;
+    private static final double DISCOUNT_FACTOR = 0.9;
     private static final double FOOD_REWARD = 1;
     private static final double NO_FOOD_REWARD = -1;
     private static final double LOSE_LIFE = -10;
@@ -37,83 +37,83 @@ public class QLearningRecurrent {
     private Random r = new Random();
     private double explorationProbability;
     private double reward;
+    private double rewardForCurrentState;
+    private int uniqueStates;
 
      QLearningRecurrent(Maze maze, PacMan pacman, Ghost[] ghosts) {
         this.maze = maze;
         this.pacman = pacman;
         this.ghosts = ghosts;
         this.neuralNetwork = new NeuralNetwork(DEPTH, HISTORY_SIZE);
+        this.neuralNetwork.tree = this.neuralNetwork.getTree("History.txt");
         this.explorationProbability = EXPLORATION_PROBABILITY;
         this.reward = -.02;
+        rewardForCurrentState = 0;
+        uniqueStates = 0;
+
+
     }
 
-    int makeDecision(){
-         boolean possibleStates[] = new boolean[4];
-         int currentState[] = new int[DEPTH];
-         double currentStateValue;
-         double possibleStateValues[] = new double[4];
+    int makeDecision() {
+        addState(estimateNextState(-1));
+        boolean possibleStates[] = new boolean[4];
+        int currentState[] = new int[DEPTH];
+        double currentStateValue;
+        neuralNetwork.storeCurrentTree();
 
-         currentState = this.estimateNextState(Direction.NONE);
-         addState(currentState);
-
-         // Check above
-         if(MazeData.getData(pacman.x, pacman.y + 1) == 1)
-             possibleStateValues[MOVE_UP] = -1000000;
-         else
-             possibleStateValues[MOVE_UP] = getStateValue(estimateNextState(Direction.UP));
-
-        if(MazeData.getData(pacman.x, pacman.y - 1) == 1)
-            possibleStateValues[MOVE_DOWN] = -1000000;
-        else
-            possibleStateValues[MOVE_DOWN] = getStateValue(estimateNextState(Direction.DOWN));
-
-        if(MazeData.getData(pacman.x + 1, pacman.y) == 1)
-            possibleStateValues[MOVE_RIGHT] = -1000000;
-        else
-            possibleStateValues[MOVE_RIGHT] = getStateValue(estimateNextState(Direction.RIGHT));
-
-        if(MazeData.getData(pacman.x - 1, pacman.y) == 1)
-            possibleStateValues[MOVE_LEFT] = -100000;
-        else
-            possibleStateValues[MOVE_LEFT] = getStateValue(estimateNextState(Direction.LEFT));
-
-        currentStateValue = getStateValue(estimateNextState(Direction.NONE));
-        double max = -100000;
-        double secondMax = -100000 ;
-        int maxDirection = -1;
-        int secondMaxDirection = -1;
-         for(int i = 0; i < 3; i++) {
-             if(possibleStateValues[i] > max){
-                 max = possibleStateValues[i];
-                 maxDirection = i;
-             }
-             else if(possibleStateValues[i] > secondMax){
-                 secondMax = possibleStateValues[i];
-                 secondMaxDirection = i;
-             }
-
-         }
-
-        if(maxDirection != -1 && secondMaxDirection != -1){
-            if((int)(Math.random()) == 1)
-            return maxDirection;
-            else
-            return secondMaxDirection;
+        int a = estimateNextBestState();
+//        switch (a){
+//              case MOVE_LEFT:
+//              System.out.println("LEFT");
+//             break;
+//            case MOVE_RIGHT:
+//                System.out.println("RIGHT");
+//                break;
+//            case MOVE_DOWN:
+//                System.out.println("DOWN");
+//                break;
+//            case MOVE_UP:
+//                System.out.println("UP");
+//                break;
+//        }
+        if(Math.random() < EXPLORATION_PROBABILITY){
+            return (int)Math.random() * 3;
         }
-        else
-            return maxDirection;
-
+        return a;
     }
 
 
     void addState(int[] state){
     // Modify this state based on what happened
-
+        if(!this.neuralNetwork.history.isEmpty()) {
+            if (!state.equals(this.neuralNetwork.history.get(this.neuralNetwork.history.size() - 1))) {
+                this.neuralNetwork.history.add(state);
+                updateStateValues();
+                rewardForCurrentState = getCurrentReward();
+            }
+        else{
+                if(MathUtils.epsilon(rewardForCurrentState,getCurrentReward(),.01)){
+                    rewardForCurrentState = getCurrentReward();
+                    updateStateValues();
+                }
+            }
+        }
+        else
+            this.neuralNetwork.history.add(state);
     // Then modify the history
-    updateStateValues();
     }
 
     void updateStateValues(){
+        double currentStateValue;
+        double possibleNextStateValue;
+        currentStateValue = getStateValue(this.neuralNetwork.history.getLast());
+        if(currentStateValue == 0.000) uniqueStates++;
+        possibleNextStateValue = getStateValue(estimateNextState(estimateNextBestState()));
+
+        currentStateValue += LEARNING_RATE * (getCurrentReward() + (DISCOUNT_FACTOR * possibleNextStateValue) - currentStateValue);
+      //  System.out.println("Current " + currentStateValue);
+
+        setStateValue(this.neuralNetwork.history.getLast(),currentStateValue);
 
     }
 
@@ -127,10 +127,10 @@ public class QLearningRecurrent {
         fillCount++;
 
         int[] ghostDistances = new int[4];
-        int[] binaryGhostDistance = new int[4];
+        int[] binaryGhostDistance = new int[3];
         for (int i = 0; i < 4; i++) {
-            ghostDistances[i] = (int) MathUtils.getRealDistance(pacX, pacY, ghostPos[i][0], ghostPos[i][1])/2;
-            MathUtils.convertIntToBinary(binaryGhostDistance, ghostDistances[i], 3);
+            ghostDistances[i] = (int)MathUtils.getRealDistance(pacX, pacY, ghostPos[i][0], ghostPos[i][1]);
+          binaryGhostDistance =  MathUtils.convertIntToBinary( ghostDistances[i], 3);
             for (int j = 0; j < 3; j++) {
                 state[fillCount] = binaryGhostDistance[j];
                 fillCount++;
@@ -142,14 +142,18 @@ public class QLearningRecurrent {
                 state[fillCount] = 1;
             fillCount++;
         }
+//        for (int s: state) {
+//            System.out.print(s);
+//        }
+//        System.out.println("");
             return state;
     }
 
 
     // Depending on the Direction give, this will estimate the future position of pacman, the 4 ghosts
-        int[] estimateNextState(Direction d )
+        int[] estimateNextState(int direction)
         {
-            if(d == Direction.NONE)
+            if(direction == -1)
             {
                 int[][] ghostPos = {
                         {ghosts[0].x, ghosts[0].y},
@@ -174,23 +178,34 @@ public class QLearningRecurrent {
                 {
                     currentGhostX = ghosts[i].xDirection + ghosts[i].x;
                     ghostPos[i][0] = currentGhostX;
+                    if(ghostPos[i][0] == -1)
+                        ghostPos[i][0] = MazeData.GRID_SIZE_X - 1;
+                    if(ghostPos[i][0] == MazeData.GRID_SIZE_X)
+                        ghostPos[i][0] = 0;
                 }
                 if(ghosts[i].yDirection != 0)
                 {
                     currentGhostY = ghosts[i].yDirection + ghosts[i].y;
-                    ghostPos[i][0] = currentGhostY;
+                    ghostPos[i][1] = currentGhostY;
                 }
             }
 
-            if(d == Direction.RIGHT){
+
+            if(direction ==MOVE_RIGHT){
+                if(pacman.x != MazeData.GRID_SIZE_X - 1)
                 return getState(pacman.x+1, pacman.y, ghostPos);
+                else
+                    return getState(0, pacman.y, ghostPos);
             }
 
-            else if(d == Direction.LEFT){
+            else if(direction ==MOVE_LEFT){
+                if(pacman.x != 0)
                 return getState(pacman.x-1, pacman.y, ghostPos);
+                else
+                    return getState(MazeData.GRID_SIZE_X - 1, pacman.y, ghostPos);
             }
 
-            else if(d == Direction.UP){
+            else if(direction == MOVE_DOWN){
                 return getState(pacman.x, pacman.y-1, ghostPos);
             }
 
@@ -212,6 +227,39 @@ public class QLearningRecurrent {
         }
 
 
+        int estimateNextBestState(){
+            double possibleStateValues[] = new double[4];
+            if(MazeData.getData(pacman.x, pacman.y - 1) == 1)
+                possibleStateValues[MOVE_UP] = -1000000;
+            else
+                possibleStateValues[MOVE_UP] = getStateValue(estimateNextState(MOVE_UP));
+
+            if(MazeData.getData(pacman.x, pacman.y + 1) == 1)
+                possibleStateValues[MOVE_DOWN] = -1000000;
+            else
+                possibleStateValues[MOVE_DOWN] = getStateValue(estimateNextState(MOVE_DOWN));
+
+            if(MazeData.getData(pacman.x + 1, pacman.y) == 1)
+                possibleStateValues[MOVE_RIGHT] = -1000000;
+            else
+                possibleStateValues[MOVE_RIGHT] = getStateValue(estimateNextState(MOVE_RIGHT));
+
+            if(MazeData.getData(pacman.x - 1, pacman.y) == 1)
+                possibleStateValues[MOVE_LEFT] = -100000;
+            else
+                possibleStateValues[MOVE_LEFT] = getStateValue(estimateNextState(MOVE_LEFT));
+            double max = -1000;
+            int maxState = -1;
+            for(int i = 0; i < 4; i++){
+                  if(possibleStateValues[i] > max) {
+                    max = possibleStateValues[i];
+                    maxState = i;
+                  }
+            }
+
+            return maxState;
+        }
+
         double getCurrentReward(){
             return this.reward;
         }
@@ -222,14 +270,20 @@ public class QLearningRecurrent {
 
         void loseLife(){
             setCurrentReward(-1);
+            System.out.println("Unique States visited " + uniqueStates);
+            makeDecision();
         }
 
         void eatGhost(){
-            setCurrentReward(.5);
+            setCurrentReward(.05);
         }
 
         void eatFood(){
-            setCurrentReward(.1);
+            setCurrentReward(.01);
+        }
+
+        void eatNothing(){
+            setCurrentReward(-.01);
         }
 
 

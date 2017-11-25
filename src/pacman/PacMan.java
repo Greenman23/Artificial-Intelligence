@@ -318,6 +318,9 @@ public class PacMan extends MovingObject {
                     maze.startNewLevel();
                 }
             }
+            else{
+                maze.qLearning.eatNothing();
+            }
         }
     }
 

@@ -17,7 +17,6 @@ public class Main extends Application {
    * @param args the command line arguments
    */
   public static void main(String[] args) {
-    System.out.println(MazeData.getData(2,2));
     Application.launch(Main.class, args);
   }
     @Override

@@ -3,6 +3,8 @@ package pacman;
 import java.io.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.System.out;
@@ -10,13 +12,13 @@ import static java.lang.System.out;
 public class NeuralNetwork {
     private int depth;
     private int historySize;
-    ArrayList<int[]> history;
+    LinkedList<int[]> history;
     double tree[];
 
     NeuralNetwork(int depth, int historySize) {
         this.depth = depth;
         this.historySize = historySize;
-        this.history = new ArrayList<int[]>();
+        this.history = new LinkedList<int[]>();
         int tree_size = (int)Math.pow(2,depth);
         tree = new double[tree_size];
     }
@@ -39,7 +41,7 @@ public class NeuralNetwork {
             bw.write(depth + " " + historySize);
             bw.newLine();
             String currentValue = "";
-            for (int i = 0; i > tree.length; i++){
+            for (int i = 0; i < tree.length; i++){
                 currentValue = String.valueOf(tree[i]);
                 bw.write(currentValue);
                 bw.newLine();
