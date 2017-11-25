@@ -24,7 +24,7 @@ public class QLearningRecurrent {
     public static final int DEPTH = 17;
     public static final int HISTORY_SIZE = 20;
     public static final int NUM_VARIABLES = 16;
-    private static final double EXPLORATION_PROBABILITY = 0.5;
+    private static final double EXPLORATION_PROBABILITY = 0.02;
     private static final double LEARNING_RATE = 0.03;
     private static final double DISCOUNT_FACTOR = 0.8;
     private static final double FOOD_REWARD = 1;
@@ -56,6 +56,30 @@ public class QLearningRecurrent {
          currentState = this.estimateNextState(Direction.NONE);
          addState(currentState);
 
+         // Check above
+         if(MazeData.getData(pacman.x, pacman.y + 1) == 1)
+             possibleStateValues[MOVE_UP] = -1000000;
+         else
+             possibleStateValues[MOVE_UP] = getStateValue(estimateNextState(Direction.UP));
+
+        if(MazeData.getData(pacman.x, pacman.y - 1) == 1)
+            possibleStateValues[MOVE_DOWN] = -1000000;
+        else
+            possibleStateValues[MOVE_DOWN] = getStateValue(estimateNextState(Direction.DOWN));
+
+        if(MazeData.getData(pacman.x + 1, pacman.y) == 1)
+            possibleStateValues[MOVE_RIGHT] = -1000000;
+        else
+            possibleStateValues[MOVE_RIGHT] = getStateValue(estimateNextState(Direction.RIGHT));
+
+        if(MazeData.getData(pacman.x - 1, pacman.y) == 1)
+            possibleStateValues[MOVE_LEFT] = -100000;
+        else
+            possibleStateValues[MOVE_LEFT] = getStateValue(estimateNextState(Direction.LEFT));
+
+        currentStateValue = getStateValue(estimateNextState(Direction.NONE));
+
+         //Check below
          // Look at current State
 
         // Check position
@@ -93,9 +117,9 @@ public class QLearningRecurrent {
         int[] ghostDistances = new int[4];
         int[] binaryGhostDistance = new int[4];
         for (int i = 0; i < 4; i++) {
-            ghostDistances[i] = (int) MathUtils.getRealDistance(pacX, pacY, ghostPos[i][0], ghostPos[i][1]);
-            MathUtils.convertIntToBinary(binaryGhostDistance, ghostDistances[i], 4);
-            for (int j = 0; j < 4; j++) {
+            ghostDistances[i] = (int) MathUtils.getRealDistance(pacX, pacY, ghostPos[i][0], ghostPos[i][1])/2;
+            MathUtils.convertIntToBinary(binaryGhostDistance, ghostDistances[i], 3);
+            for (int j = 0; j < 3; j++) {
                 state[fillCount] = binaryGhostDistance[j];
                 fillCount++;
             }

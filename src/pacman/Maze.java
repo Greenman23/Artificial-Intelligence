@@ -762,7 +762,7 @@ public class Maze extends Parent {
             pacMan.score.set(0);
             pacMan.dotEatenCount = 0;
 
-            livesCount.set(2);
+            livesCount.set(0);
         } else {
             lastGameResult.set(false);
             level.set(level.get() + 1);
@@ -822,9 +822,8 @@ public class Maze extends Parent {
     public void addLife() {
 
         if (addLifeFlag) {
-            livesCount.set(livesCount.get() + 1);
+//            livesCount.set(livesCount.get() + 1);
             addLifeFlag = false;
         }
     }
-
 }
