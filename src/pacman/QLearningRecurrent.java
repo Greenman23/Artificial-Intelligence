@@ -78,10 +78,32 @@ public class QLearningRecurrent {
             possibleStateValues[MOVE_LEFT] = getStateValue(estimateNextState(Direction.LEFT));
 
         currentStateValue = getStateValue(estimateNextState(Direction.NONE));
-        int max = 0;
-        int secondMax = 0;
-         //for(int i = 0; i < 3; i++)
-           return 1;
+        double max = -100000;
+        double secondMax = -100000 ;
+        int maxDirection = -1;
+        int secondMaxDirection = -1;
+         for(int i = 0; i < 3; i++) {
+             if(possibleStateValues[i] > max){
+                 max = possibleStateValues[i];
+                 maxDirection = i;
+             }
+             else if(possibleStateValues[i] > secondMax){
+                 secondMax = possibleStateValues[i];
+                 secondMaxDirection = i;
+             }
+
+         }
+
+        if(maxDirection != -1 && secondMaxDirection != -1){
+            if((int)(Math.random()) == 1)
+            return maxDirection;
+            else
+            return secondMaxDirection;
+        }
+        else
+            return maxDirection;
+
+
     }
 
 
