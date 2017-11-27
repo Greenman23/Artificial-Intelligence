@@ -1,3 +1,4 @@
+
 package pacman;
 
 import javafx.animation.Animation;
@@ -86,8 +87,8 @@ public class Maze extends Parent {
     private final Timeline flashingTimeline;
     private final Group group;
 
-  // public final QLearning qLearning;
-    public final QLearningRecurrent qLearning;
+   public final QLearning qLearning;
+   // public final QLearningRecurrent qLearning;
     public Maze() {
 
         setFocused(true);
@@ -499,7 +500,7 @@ public class Maze extends Parent {
             MazeData.printDots();
         }
 
-        qLearning = new QLearningRecurrent(this,pacMan, ghosts);
+        qLearning = new QLearning(this,pacMan, ghosts,new double[QLearning.NUM_VARIABLES]);
     }
 
 
@@ -655,7 +656,6 @@ public class Maze extends Parent {
             if (hasMet(g)) {
                 if (g.isHollow) {
                     pacManEatsGhost(g);
-                    qLearning.eatGhost();
                 } else {
                     for (Ghost ghost : ghosts) {
                         ghost.stop();
@@ -762,7 +762,7 @@ public class Maze extends Parent {
             pacMan.score.set(0);
             pacMan.dotEatenCount = 0;
 
-            livesCount.set(0);
+            livesCount.set(2);
         } else {
             lastGameResult.set(false);
             level.set(level.get() + 1);
@@ -822,8 +822,9 @@ public class Maze extends Parent {
     public void addLife() {
 
         if (addLifeFlag) {
-//            livesCount.set(livesCount.get() + 1);
+            livesCount.set(livesCount.get() + 1);
             addLifeFlag = false;
         }
     }
+
 }
