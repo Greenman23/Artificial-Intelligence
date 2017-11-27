@@ -105,15 +105,18 @@ public class MathUtils {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     }
 
-    public static int[] convertIntToBinary(int[] arr, int x, int base) {
-        arr = new int[base];
+    public static int[] convertIntToBinary( int x, int base) {
+        int arr[] = new int[base];
+        int currentNum = (int)Math.pow(2,base) / 2;
         for (int i = 0; i < arr.length; i++) {
-            if (base < x) {
-                x -= -base;
+            if(currentNum <= x){
                 arr[i] = 1;
-            } else
+                x -= currentNum;
+            }
+
+            else{
                 arr[i] = 0;
-            base /= 2;
+            }
         }
 
         return arr;

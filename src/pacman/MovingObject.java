@@ -80,7 +80,7 @@ public abstract class MovingObject extends Parent {
     private Timeline createTimeline() {
         timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
-        KeyFrame kf = new KeyFrame(Duration.millis(45), event -> moveOneStep());
+        KeyFrame kf = new KeyFrame(Duration.millis(30), event -> moveOneStep());
         timeline.getKeyFrames().add(kf);
 
         return timeline;

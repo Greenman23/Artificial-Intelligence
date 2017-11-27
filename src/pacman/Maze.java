@@ -87,7 +87,7 @@ public class Maze extends Parent {
     private final Timeline flashingTimeline;
     private final Group group;
 
-   public final QLearning qLearning;
+   public final PacManager qLearning;
    // public final QLearningRecurrent qLearning;
     public Maze() {
 
@@ -500,7 +500,7 @@ public class Maze extends Parent {
             MazeData.printDots();
         }
 
-        qLearning = new QLearning(this,pacMan, ghosts,new double[QLearning.NUM_VARIABLES]);
+        qLearning = new PacManager(this,pacMan, ghosts);
     }
 
 
@@ -569,7 +569,7 @@ public class Maze extends Parent {
                 int dotType;
 
                 if ((x == 28 || x == 1) && (y == 3 || y == 24)) {
-                    dotType = MazeData.MAGIC_DOT;
+                    dotType = MazeData.NORMAL_DOT;
                 } else {
                     dotType = MazeData.NORMAL_DOT;
                 }
@@ -594,7 +594,7 @@ public class Maze extends Parent {
                 int dotType;
 
                 if ((x == 28 || x == 1) && (y == 3 || y == 24)) {
-                    dotType = MazeData.MAGIC_DOT;
+                    dotType = MazeData.NORMAL_DOT;
                 } else {
                     dotType = MazeData.NORMAL_DOT;
                 }
@@ -762,7 +762,7 @@ public class Maze extends Parent {
             pacMan.score.set(0);
             pacMan.dotEatenCount = 0;
 
-            livesCount.set(2);
+            livesCount.set(0);
         } else {
             lastGameResult.set(false);
             level.set(level.get() + 1);
